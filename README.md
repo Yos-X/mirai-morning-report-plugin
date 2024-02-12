@@ -39,7 +39,13 @@
 已知一些可用的 API：
 
 ```
+# 每日早报
 https://api.03c3.cn/api/zb
+https://zj.v.api.aa1.cn/api/60s/
+https://zj.v.api.aa1.cn/api/60s-old/
+
+# 摸鱼人日历
+https://api.vvhan.com/api/moyu
 ```
 
 ### 开启早报
@@ -49,3 +55,7 @@ https://api.03c3.cn/api/zb
 ### 开启早报
 
 在需要关闭每日早报的群聊发送 `(/)早报 关闭` 即可
+
+## 拓展
+
+不止是早报，只要是每日定时更新的图片 API 都适用
