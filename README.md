@@ -18,7 +18,7 @@
 
 ### 安装
 
-1. 从 Release 下载最新发行版
+1. 从 [Release](https://github.com/Yos-X/mirai-morning-report-plugin/releases) 下载最新发行版
 2. 在 `MCL 停止运行` 时 放入 `MCL/plugins` 文件夹
 
 ### 权限配置
