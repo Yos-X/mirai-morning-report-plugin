@@ -6,7 +6,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import net.mamoe.mirai.Bot
-import net.mamoe.mirai.console.command.CommandManager.INSTANCE.register
+import net.mamoe.mirai.console.command.descriptor.ExperimentalCommandDescriptors
 import net.mamoe.mirai.console.data.AutoSavePluginConfig
 import net.mamoe.mirai.console.data.value
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
@@ -35,11 +35,12 @@ object YosPluginMain : KotlinPlugin(
         val groups: MutableSet<Long> by value(mutableSetOf())
     }
 
+    @OptIn(ExperimentalCommandDescriptors::class)
     override fun onEnable() {
         logger.info { "早报插件 已载入" }
         YosPermission
         PluginConfig.reload()
-        YosCommand.register()
+        registerYosCommandResolver(this)
 
         val startTask = object : TimerTask() {
             override fun run() = runBlocking {
