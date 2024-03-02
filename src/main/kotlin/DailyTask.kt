@@ -10,7 +10,7 @@ import java.util.Date
 import java.util.Timer
 import java.util.TimerTask
 
-private val startTimer = Timer(true)
+private val startTimer = Timer()
 private val oneDayMill = 24 * 60 * 60 * 1000L
 private val zeroTime = Date.from(
     Date().toInstant().atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneId.systemDefault()).toInstant()

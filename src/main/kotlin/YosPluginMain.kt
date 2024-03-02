@@ -35,6 +35,7 @@ object YosPluginMain : KotlinPlugin(
         val groups: MutableSet<Long> by value(mutableSetOf())
     }
 
+    @Suppress("KotlinConstantConditions")
     @OptIn(ExperimentalCommandDescriptors::class)
     override fun onEnable() {
         logger.info { "早报插件 已载入" }
@@ -55,10 +56,7 @@ object YosPluginMain : KotlinPlugin(
                                 launch {
                                     withContext(Dispatchers.IO) {
                                         for (groupId in PluginConfig.groups) {
-                                            val group = it.getGroup(groupId)
-                                            if (group != null) {
-                                                group.sendImage(ByteArrayInputStream(image))
-                                            }
+                                            it.getGroup(groupId)?.sendImage(ByteArrayInputStream(image))
                                             delay(100)
                                             //防风控
                                         }
@@ -68,16 +66,13 @@ object YosPluginMain : KotlinPlugin(
                             return@runBlocking
                         }
                     } else {
-                        delay(60 * 10000)
+                        delay(60 * 1000)
                         //一分钟后重试
                     }
                 }
                 for (groupId in PluginConfig.groups) {
                     Bot.instances.forEach {
-                        val group = it.getGroup(groupId)
-                        if (group != null) {
-                            group.sendMessage("获取早报图片出错，请检查 API 配置")
-                        }
+                        it.getGroup(groupId)?.sendMessage("获取早报图片出错，请检查 API 配置")
                     }
                 }
             }
